@@ -6,6 +6,8 @@
       "dom.iterable",
       "esnext"
     ],
+    "sourceMap": true,
+    "noImplicitAny": false,
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -20,7 +22,12 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
+  "exclude": [
+    "node_modules",
+    "build"
+  ],
   "include": [
-    "src"
+    "src",
+    "webpack.config.ts"
   ]
 }
