@@ -2,12 +2,19 @@ import React from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 
+type MyPostsType = {
+
+}
+
+
 const MyPosts = (props) => {
 // const { posts } = props;
-let postsElements = props.posts.map (p => <Post message={p.message} likesCount={p.likesCount}/>)
-let addPost = () => {
-    alert("ello")
-}
+    let postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
+    let newPostElement = React.createRef<HTMLTextAreaElement>();
+    let addPost= () => {
+        let text= newPostElement.current?.value
+        props.addPost(text)
+    }
 
 
     return (
@@ -15,7 +22,7 @@ let addPost = () => {
             My posts
             <div>
                 <div>
-                    <textarea></textarea>
+                    <textarea ref={newPostElement}></textarea>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>

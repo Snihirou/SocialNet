@@ -1,29 +1,34 @@
-// type MessagesType = {
-//     id: number;
-//     message: string
-// }
-//
-// type DialogType = {
-//     id: number;
-//     name: string
-// }
-//
-// type PostsType = {
-//     id: number;
-//     message: string;
-//     likesCount: number
-// }
-//
-// type ProfilePageType ={
-//     posts: Array<PostsType>
-// }
-//
-// type DialogPageType ={
-//     dialogData: Array<DialogType>
-//     messages: Array<MessagesType>
-// }
+type MessagesType = {
+    id: number;
+    message: string
+}
 
-let state = {
+type DialogDataType = {
+    id: number;
+    name: string
+}
+
+type PostsType = {
+    id: number;
+    message: string;
+    likesCount: number
+}
+
+type ProfilePageType ={
+    posts: Array<PostsType>
+}
+
+type DialogPageType ={
+    dialogData: Array<DialogDataType>
+    messages: Array<MessagesType>
+}
+
+type RootStateType = {
+    dialogPage: DialogPageType;
+    profilePage: ProfilePageType
+}
+
+let state: RootStateType = {
 
     dialogPage: {
         dialogData: [
@@ -47,8 +52,17 @@ let state = {
             {id: 2, message: 'Its my first post', likesCount: 20},
         ]
     },
-    sidebar: {
 
+}
+
+export let addPost = (postMessage) => {
+    let newPost = {
+        id: 5,
+        message: "Gazprom",
+        likesCount: 1
     }
+    state.profilePage.posts.push(newPost)
+
 }
 export default state
+
