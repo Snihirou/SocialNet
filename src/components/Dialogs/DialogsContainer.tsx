@@ -1,28 +1,52 @@
 import React from 'react';
-import s from './Dialogs.module.css'
-import DialogItem from "./DialogItem/DialogsItem";
-import Message from "./Message/Message";
 import {addMessageAC, onMassageChangeAC} from "../../redux/dialog-reducer";
 import Dialogs from "./Dialogs";
+import {connect} from "react-redux";
 
 
-const DialogsContainer = (props) => {
-    let state = props.store.getState().dialogPage
+// const DialogsContainer = (props) => {
 
-    let addMessage = () => {
-        props.store.dispatch(addMessageAC())
+
+//     return (
+//         <StoreContext.Consumer>
+//             {(store) => {
+//                 let state = store.getState()
+//
+//                 let addMessage = () => {
+//                     store.dispatch(addMessageAC())
+//                 }
+//                 let onMassageChange = (post) => {
+//                     let action = onMassageChangeAC(post)
+//                     store.dispatch(action)
+//                 }
+//                 return <Dialogs addMessage={addMessage}
+//                                 onMassageChange={onMassageChange}
+//                                 dialogPage={state.dialogPage}
+//                 />
+//             }
+//         }
+//         </StoreContext.Consumer>
+//     )
+// }
+let mapStateToProps = (state) => {
+    return {
+        dialogPage: state.dialogPage
     }
-    let onMassageChange = (post) => {
-        let action = onMassageChangeAC(post)
-        props.store.dispatch(action)
+};
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        addMessage: () => {
+            dispatch(addMessageAC())
+        },
+        onMassageChange: (post) => {
+            let action = onMassageChangeAC(post)
+            dispatch(action)
+        }
     }
+};
 
-    return (
-        <Dialogs store={props.store}
-                 addMessage={addMessage}
-                 onMassageChange={onMassageChange}
-                 dialogPage={state}/>
-    )
-}
-export default DialogsContainer
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
 
+
+export default DialogsContainer;
