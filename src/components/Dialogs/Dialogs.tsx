@@ -8,8 +8,7 @@ import {addMessageAC, onMassageChangeAC} from "../../redux/dialog-reducer";
 const Dialogs = (props) => {
     let state = props.dialogPage
 
-    let dialogsElements = state.dialogData.map(d =>
-        <DialogItem key={d.id} name={d.name} id={d.id}/>)
+    let dialogsElements = state.dialogData.map(d => <DialogItem key={d.id} name={d.name} id={d.id}/>)
     let messagesElements = state.messages.map(m => <Message key={m.id} message={m.message}/>)
 
 
