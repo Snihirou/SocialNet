@@ -11,9 +11,10 @@ import Settings from "./components/Settings/Settings";
 import Friends from "./components/Friends/Friends";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 
-const App = (props) => {
+const App = () => {
     //debugger
     return (
         <Router>
@@ -21,13 +22,14 @@ const App = (props) => {
                 <Header/>
                 <Navbar/>
                 <div className="app-wrapper-content">
-                    <Route path='/profile' render={() => <Profile />} />
+                    {/*<Route path='/profile' component={ProfileContainer} />*/}
+                    <Route path='/profile:id' component={ProfileContainer} />
                     <Route path='/dialogs' render={() => <DialogsContainer/>} />
                     <Route path='/news' component={News} />
                     <Route path='/music' component={Music} />
                     <Route path='/settings' component={Settings} />
                     <Route path='/friends' component={Friends} />
-                    <Route path='/users' render={() => <UsersContainer />} />
+                    <Route path='/users' component={UsersContainer} />
                 </div>
              </div>
         </Router>

@@ -26,6 +26,7 @@ export type PostsType = {
 type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
+    profile: string
 }
 
 type DialogPageType = {
@@ -52,7 +53,7 @@ type StoreType = {
     getState: () => RootStateType
     _rerenderEntireTree: (state) => void
     subscribe: (observer) => void
-    dispatch: (action: { type: string }) => void
+    dispatch: (action: { type: string, payload: any }) => void
 }
 
 type AddPostActionType = {
@@ -103,7 +104,8 @@ let store: StoreType = {
                 {id: 1, message: 'Hi, how are you?', likesCount: 15},
                 {id: 2, message: 'Its my first post', likesCount: 20},
             ],
-            newPostText: ""
+            newPostText: "",
+            profile: ""
 
         },
         sidebar: {}
@@ -123,11 +125,10 @@ let store: StoreType = {
     },
 
     dispatch(action) {
-
-        this._state.profilePage = profileReducer(this._state.profilePage, action);
-        this._state.dialogPage = dialogReducer(this._state.dialogPage, action);
-        this._state.sidebar = sidebarReducer(this._state.sidebar, action);
-        this._rerenderEntireTree(this._state)
+        // this._state.profilePage = profileReducer(this._state.profilePage, action);
+        // this._state.dialogPage = dialogReducer(this._state.dialogPage, action);
+        // this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+        // this._rerenderEntireTree(this._state)
     },
 
 }
