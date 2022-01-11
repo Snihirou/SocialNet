@@ -18,26 +18,26 @@ let Users = (props) => {
                              }}>{p}</span>
             })}
         </div>
-        {
-            props.users.map(u => <div key={u.id}>
+        {props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
-                        <NavLink to={'/profile' + u.id} >
-                            <img src={u.photos.small != null ? u.photos.small : userPhoto} className={styles.userPhoto}/>
+                        <NavLink to={'/profile' + u.id}>
+                            <img src={u.photos.small != null ? u.photos.small : userPhoto}
+                                 className={styles.userPhoto}/>
                         </NavLink>
                     </div>
                     <div>
                         {u.followed
-                            ? <button onClick={() => {
-                                props.unFollow(u.id)
-                            }}>Unfollow</button>
-                            : <button onClick={() => {
-                                props.follow(u.id)
-                            }}>Follow</button>}
+                            ? <button disabled={props.followingInProgress.some(id => id === u.id)}
+                                      onClick={() => {props.unFollow(u.id)}}>
+                                Unfollow</button>
+                            : <button disabled={props.followingInProgress.some(id => id === u.id)}
+                                      onClick={() => {props.follow(u.id)}}>
+                                Follow</button>}
 
                     </div>
                 </span>
-                <span>
+            <span>
                    <span>
                        <div>{u.name}</div>
                        <div>{u.status}</div>S
@@ -47,7 +47,7 @@ let Users = (props) => {
                         <div>{"u.location.city"}</div>
                     </span>
                 </span>
-            </div>)
+        </div>)
         }
     </div>
 }

@@ -3,7 +3,7 @@ import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
 import {addMessageAC, onMassageChangeAC} from "../../redux/dialog-reducer";
-
+import {Redirect} from 'react-router-dom';
 
 const Dialogs = (props) => {
     let state = props.dialogPage
@@ -21,6 +21,8 @@ const Dialogs = (props) => {
 
     }
 
+    if(!props.isAuth) return <Redirect to={'/login'} />
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
@@ -30,7 +32,7 @@ const Dialogs = (props) => {
                 {messagesElements}
                 <textarea placeholder="Enter your message"
                           onChange={onMassageChange}
-                          //ref={newMessage}
+                    //ref={newMessage}
                           value={state.newMessageText}/>
                 <div>
                     <button onClick={addMessage}>Add message</button>
