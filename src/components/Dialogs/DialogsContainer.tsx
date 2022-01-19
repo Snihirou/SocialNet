@@ -2,36 +2,14 @@ import React from 'react';
 import {addMessageAC, onMassageChangeAC} from "../../redux/dialog-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
+import {Redirect} from "react-router-dom";
+import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {compose} from "redux";
 
 
-// const DialogsContainer = (props) => {
-
-
-//     return (
-//         <StoreContext.Consumer>
-//             {(store) => {
-//                 let state = store.getState()
-//
-//                 let addMessage = () => {
-//                     store.dispatch(addMessageAC())
-//                 }
-//                 let onMassageChange = (post) => {
-//                     let action = onMassageChangeAC(post)
-//                     store.dispatch(action)
-//                 }
-//                 return <Dialogs addMessage={addMessage}
-//                                 onMassageChange={onMassageChange}
-//                                 dialogPage={state.dialogPage}
-//                 />
-//             }
-//         }
-//         </StoreContext.Consumer>
-//     )
-// }
 let mapStateToProps = (state) => {
     return {
         dialogPage: state.dialogPage,
-        isAuth: state.auth.isAuth
     }
 };
 
@@ -47,7 +25,7 @@ let mapDispatchToProps = (dispatch) => {
     }
 };
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
-
-
-export default DialogsContainer;
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect)(Dialogs)
+;

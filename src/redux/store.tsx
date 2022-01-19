@@ -29,7 +29,7 @@ type ProfilePageType = {
     profile: string
 }
 
-type DialogPageType = {
+export type DialogPageType = {
     dialogData: Array<DialogDataType>
     messages: Array<MessagesType>
     newMessageText: string

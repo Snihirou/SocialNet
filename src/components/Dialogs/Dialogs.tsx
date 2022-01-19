@@ -4,8 +4,18 @@ import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
 import {addMessageAC, onMassageChangeAC} from "../../redux/dialog-reducer";
 import {Redirect} from 'react-router-dom';
+import {DialogPageType} from "../../redux/store";
 
-const Dialogs = (props) => {
+export type MapStateToPropsType = {
+    dialogPage: DialogPageType
+}
+
+type MapDispatchToPropsType = {
+    addMessage: () => any
+    onMassageChange: (post) => any
+}
+
+const Dialogs: React.FC<MapStateToPropsType & MapDispatchToPropsType> = (props) => {
     let state = props.dialogPage
 
     let dialogsElements = state.dialogData.map(d => <DialogItem key={d.id} name={d.name} id={d.id}/>)
@@ -21,7 +31,7 @@ const Dialogs = (props) => {
 
     }
 
-    if(!props.isAuth) return <Redirect to={'/login'} />
+    // if(!props.isAuth) return <Redirect to={'/login'} />
 
     return (
         <div className={s.dialogs}>

@@ -12,6 +12,8 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 
+const DialogsContainerComp = DialogsContainer as React.ElementType
+const ProfileContainerComp = ProfileContainer as React.ElementType
 
 const App = () => {
     //debugger
@@ -22,8 +24,10 @@ const App = () => {
                 <Navbar/>
                 <div className="app-wrapper-content">
                     {/*<Route path='/profile' component={ProfileContainer} />*/}
-                    <Route path='/profile:userId?' component={ProfileContainer} />
-                    <Route path='/dialogs' render={() => <DialogsContainer/>} />
+                    {/*<Route path='/profile:userId?' component={ProfileContainer} />*/}
+                    <Route path='/profile:userId?' render={() => <ProfileContainerComp />} />
+                    <Route path='/dialogs' render={() => <DialogsContainerComp />} />
+                    {/*<Route path='/dialogs' component={DialogsContainer} />*/}
                     <Route path='/news' component={News} />
                     <Route path='/music' component={Music} />
                     <Route path='/settings' component={Settings} />

@@ -9,6 +9,8 @@ import {
     getUsers,
 } from "../../redux/users-reducer";
 import Preloader from "../common/Preloader/Preloader";
+import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 export interface Props {
     users: Array<UsersType>
@@ -70,29 +72,12 @@ let mapStateToProps = (state) => ({
     followingInProgress: state.usersPage.followingInProgress
 });
 
-// let mapDispatchToProps = (dispatch) => {
-//     return {
-//         follow: (userId) => {
-//             dispatch(followAC(userId))
-//         },
-//         unFollow: (userId) => {
-//             dispatch(unfollowAC(userId))
-//         },
-//         setUsers: (users) => {
-//             dispatch(setusersAC(users))
-//         },
-//         setCurrentPage: (pageNumber) => {
-//             dispatch(SetCurrentPageAC(pageNumber))
-//         },
-//         setTotalUsersCount: (totalCount) => {
-//             dispatch(SetUsersTotalCountAC(totalCount))
-//         },
-//         toggleIsFetching: (isFetching) => {
-//             dispatch(ToggleIsFetchingAC(isFetching))
-//         }
-//     }
-// }
+// export default connect(mapStateToProps, {
+//     followSuccess, unFollowSuccess, toggleFollowingProgress, getUsers
+// })(UsersContainer)
 
-export default connect(mapStateToProps, {
+export default compose(
+    withAuthRedirect,
+    connect(mapStateToProps, {
     followSuccess, unFollowSuccess, toggleFollowingProgress, getUsers
-})(UsersContainer)
+}))(UsersContainer)
