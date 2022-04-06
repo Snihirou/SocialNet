@@ -15,7 +15,7 @@ let initialState = {
         {id: 2, message: "How is your day?"},
         {id: 3, message: "Amazing"},
     ],
-    newMessageText: ""
+    // newMessageText: ""
 }
 
 export const dialogReducer = (state = initialState, action) => {
@@ -24,20 +24,19 @@ export const dialogReducer = (state = initialState, action) => {
         case ADD_MESSAGE:
             return {
             ...state,
-            messages: [...state.messages, {id: 6, message: state.newMessageText}],
-            newMessageText: ""
+            messages: [...state.messages, {id: 6, message: action.newMessageBody}]
         }
-        case UPDATE_NEW_MESSAGE_TEXT:
-            return {
-                ...state,
-                newMessageText: action.newMessage
-            }
+        // case UPDATE_NEW_MESSAGE_TEXT:
+        //     return {
+        //         ...state,
+        //         newMessageBody: action.newMessageBody
+        //     }
         default:
             return state
     }
 }
 
-export const addMessageAC = () => ({type: ADD_MESSAGE})
+export const addMessageAC = (newMessageBody) => ({type: ADD_MESSAGE, newMessageBody})
 
 
 export const onMassageChangeAC = (post) =>

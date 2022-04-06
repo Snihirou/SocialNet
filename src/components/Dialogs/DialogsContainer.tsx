@@ -15,13 +15,13 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        addMessage: () => {
-            dispatch(addMessageAC())
-        },
-        onMassageChange: (post) => {
-            let action = onMassageChangeAC(post)
-            dispatch(action)
+        addMessage: (newMessageBody) => {
+            dispatch(addMessageAC(newMessageBody))
         }
+        // onMassageChange: (post) => {
+        //     let action = onMassageChangeAC(post)
+        //     dispatch(action)
+        // }
     }
 };
 

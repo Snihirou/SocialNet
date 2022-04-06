@@ -2,17 +2,20 @@ import React from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
-import {addMessageAC, onMassageChangeAC} from "../../redux/dialog-reducer";
-import {Redirect} from 'react-router-dom';
 import {DialogPageType} from "../../redux/store";
+import {reduxForm ,Field} from "redux-form";
+import {Textarea} from "../common/FormsControls/FormControls";
+import {maxLengthCreator} from "../../utils/validators/validators";
+import AddMessageForm from "./AddMessageForm/AddMessageForm";
 
 export type MapStateToPropsType = {
     dialogPage: DialogPageType
 }
 
 type MapDispatchToPropsType = {
-    addMessage: () => any
+    addMessage: (newMessageBody) => any
     onMassageChange: (post) => any
+    addNewMessage: (values) => any
 }
 
 const Dialogs: React.FC<MapStateToPropsType & MapDispatchToPropsType> = (props) => {
@@ -22,12 +25,16 @@ const Dialogs: React.FC<MapStateToPropsType & MapDispatchToPropsType> = (props) 
     let messagesElements = state.messages.map(m => <Message key={m.id} message={m.message}/>)
 
 
-    let addMessage = () => {
-        props.addMessage()
-    }
-    let onMassageChange = (e) => {
-        let post = e.target.value
-        props.onMassageChange(post)
+    // let addMessage = () => {
+    //     props.addMessage()
+    // }
+    // let onMassageChange = (e) => {
+    //     let post = e.target.value
+    //     props.onMassageChange(post)
+    //
+    // }
+    let addNewMessage = (values) => {
+        props.addMessage(values.newMessageBody)
 
     }
 
@@ -40,16 +47,11 @@ const Dialogs: React.FC<MapStateToPropsType & MapDispatchToPropsType> = (props) 
             </div>
             <div className={s.messages}>
                 {messagesElements}
-                <textarea placeholder="Enter your message"
-                          onChange={onMassageChange}
-                    //ref={newMessage}
-                          value={state.newMessageText}/>
-                <div>
-                    <button onClick={addMessage}>Add message</button>
-                </div>
             </div>
+            <AddMessageForm onSubmit={addNewMessage}/>
         </div>
     )
 }
+
 export default Dialogs
 

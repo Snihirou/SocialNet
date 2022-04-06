@@ -14,6 +14,7 @@ import Login from "./components/Login/Login";
 
 const DialogsContainerComp = DialogsContainer as React.ElementType
 const ProfileContainerComp = ProfileContainer as React.ElementType
+const LoginComp = Login as React.ElementType
 
 const App = () => {
     //debugger
@@ -33,7 +34,8 @@ const App = () => {
                     <Route path='/settings' component={Settings} />
                     <Route path='/friends' component={Friends} />
                     <Route path='/users' component={UsersContainer} />
-                    <Route path='/login' component={Login} />
+                    <Route path='/login' render={() => <LoginComp />} />
+                    {/*<Route path='/login' component={c} />*/}
                 </div>
              </div>
         </Router>
