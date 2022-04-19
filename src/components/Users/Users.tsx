@@ -9,6 +9,7 @@ const Users = (props) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
+
     return <div>
         <div>
             {pages.map(p => {
@@ -18,7 +19,7 @@ const Users = (props) => {
                              }}>{p}</span>
             })}
         </div>
-        {props.users.map(u => <div key={u.id}>
+        {props?.users?.map(u => <div key={u.id}>
                 <span>
                     <div>
                         <NavLink to={'/profile' + u.id}>
