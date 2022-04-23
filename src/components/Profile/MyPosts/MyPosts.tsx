@@ -4,12 +4,16 @@ import Post from "./Post/Post";
 import {reduxForm ,Field} from "redux-form";
 import {maxLengthCreator, required} from "../../../utils/validators/validators";
 import {Textarea} from "../../common/FormsControls/FormControls";
+import {Interface} from "readline";
 
-type MyPostsType = {}
+interface MyPosts  {
+    posts
+    addPost
+}
 
-
-const MyPosts = (props) => {
+const MyPosts = React.memo<MyPosts>(props => {
     let postsElements = props?.posts?.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>)
+
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     let onAddPost = (values) => {
@@ -25,7 +29,7 @@ const MyPosts = (props) => {
             </div>
         </div>
     )
-}
+});
 const maxLength10 = maxLengthCreator(10)
 
 let AddNewPostForm = (props) => {

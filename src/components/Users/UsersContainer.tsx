@@ -38,10 +38,12 @@ export interface Props {
 
 class UsersContainer extends React.Component<Props> {
     componentDidMount() {
-        this.props.requestUsers(this.props.currentPage, this.props.pageSize)
+        const {currentPage, pageSize} = this.props
+        this.props.requestUsers(currentPage, pageSize)
     }
     onPageChanged = (pageNumber) => {
-        this.props.requestUsers(pageNumber, this.props.pageSize)
+        const {pageSize} = this.props
+        this.props.requestUsers(pageNumber, pageSize)
     }
 
     render() {
@@ -73,10 +75,6 @@ let mapStateToProps = (state) => {
         followingInProgress: getFollowingInProgress(state.usersPage)
     }
 };
-
-// export default connect(mapStateToProps, {
-//     followSuccess, unFollowSuccess, toggleFollowingProgress, getUsers
-// })(UsersContainer)
 
 export default compose(
     connect(mapStateToProps, {

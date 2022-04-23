@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
@@ -13,8 +13,7 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import {connect} from "react-redux";
 import {withRouter, Switch} from "react-router-dom";
-import {compose} from "redux";
-import {initializeApp, initializedSuccess} from "./redux/app-reducer";
+import {initializeApp} from "./redux/app-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
 
 const DialogsContainerComp = DialogsContainer as React.ElementType
@@ -26,7 +25,6 @@ interface Props {
 }
 
 class App extends React.Component<Props> {
-
     componentDidMount() {
         this.props.initializeApp()
     }
@@ -65,9 +63,3 @@ const mapStateToProps = (state) => ({
 export default withRouter(
     connect <any,Props>(mapStateToProps,{initializeApp})(App) as any
 );
-
-
-// export default compose(
-//     withRouter,
-//     connect(mapStateToProps, {initializeApp}))(App)
-
