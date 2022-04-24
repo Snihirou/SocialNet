@@ -54,7 +54,7 @@ let initialState: StateType = {
         // {id: 3, photoURL:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpT4qLLr8AE9I1xWEsOlQuwe1ObnrfZWKBNQ&usqp=CAU',
         //     followed: false, fullName: 'Katy', status: 'no money, no honey', location: {city: 'Kiev', country: 'Ukraine'}}
     ],
-    pageSize: 50,
+    pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,
